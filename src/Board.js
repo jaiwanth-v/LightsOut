@@ -3,16 +3,16 @@ import Cell from "./Cell";
 import "./Board.css";
 
 
-class Board extends Component {
+export default class Board extends Component {
   static defaultProps = {
     nrows: 5,
     ncols: 5,
   };
-   
-     state = {
-      hasWon: false,
-      board: this.createBoard()
-    };
+
+  state = {
+    hasWon: false,
+    board: this.createBoard()
+  };
  
   createBoard() {
     let board = [];
@@ -31,7 +31,7 @@ class Board extends Component {
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
 
-    function flipCell(y, x) {
+    const flipCell = (y, x) => {
       if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
         board[y][x] = !board[y][x];
       }
@@ -41,13 +41,11 @@ class Board extends Component {
     flipCell(y, x + 1); 
     flipCell(y - 1, x); 
     flipCell(y + 1, x); 
-
    
     let hasWon = board.every(row => row.every(cell => !cell));
 
     this.setState({ board, hasWon});
   }
-
   
   makeTable() {
     let tblBoard = [];
@@ -93,4 +91,4 @@ class Board extends Component {
   }
 }
 
-export default Board;
+
